@@ -15,7 +15,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App/>}>
           <Route index element={<Home/>} />
-          <Route path="/store" element={<Store/>} />
+          <Route path="/mainMenu" element={<Store catagory={1}/>} />
+          <Route path="/deserts" element={<Store catagory={2}/>} />
           <Route path="/cart" element={<Cart/>} />
         </Route>
     </Routes>

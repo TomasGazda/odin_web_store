@@ -11,7 +11,9 @@ import ListItemText from '@mui/material/ListItemText';
 import { appConst } from '../../app.consts';
 import { mainNavbarItems } from './consts/navbarlist';
 import { navbarStyles } from './styles';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink} from 'react-router-dom';
+import Button from '@mui/material/Button';
+
 
 
 
@@ -52,7 +54,8 @@ const Navbar = (props) => {
                   <List sx={navbarStyles.list}>
                         {mainNavbarItems.map((item) =>(
                             <ListItem button key={item.id}>  
-                             <Link to="/store">{item.name}</Link>
+                             <Button component={RouterLink} to={item.route}>
+                                   {item.name}</Button>
                            </ListItem>
                       ))}
                   </List>
@@ -60,12 +63,13 @@ const Navbar = (props) => {
         </Drawer>
         {/* Left Bar desktop size */}
         <Drawer
+
               variant="permanent"
               anchor="left"
               open={true}
               sx={{
                 display: { xs: 'none', sm: 'block' },
-                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: appConst.drawerWidth, },
+                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: appConst.drawerWidth,backgroundColor:appConst.secondaryMain,overflowX:"hidden"},
               }}
               >
                 <Box
@@ -87,9 +91,9 @@ const Navbar = (props) => {
                               <ListItemIcon sx={navbarStyles.icons}>
                                 {item.icon}
                               </ListItemIcon>
-                              <Link to="/store">{item.name}</Link>
-                              
-                          
+                              <Button component={RouterLink} to={item.route}>
+                                   {item.name}</Button>
+
                         </ListItem>
                       ))}
                   </List>

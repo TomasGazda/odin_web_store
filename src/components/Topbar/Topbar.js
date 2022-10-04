@@ -6,12 +6,14 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import  StyledBadge from '@mui/material/Badge';
 import { appConst } from '../../app.consts';
+
 
 const Topbar = (props) => {
   return (
     <div>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flex: 1,}}>
       <AppBar 
       position="static"
       sx={{
@@ -37,6 +39,7 @@ const Topbar = (props) => {
           </Typography>
           
             <div>
+              
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -45,7 +48,10 @@ const Topbar = (props) => {
                 onClick={props.openCart}
                 color="inherit"
               >
-                <ShoppingCartIcon />
+                <StyledBadge badgeContent={props.items} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+                
               </IconButton>
 
             </div>

@@ -1,35 +1,20 @@
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import PedalBikeIcon from '@mui/icons-material/PedalBike';
-import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
-import SailingIcon from '@mui/icons-material/Sailing';
+import CakeIcon from '@mui/icons-material/Cake';
+import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 
 export const mainNavbarItems = [
     {
         id:0,
-        name:"Cars",
-        icon:<DirectionsCarIcon/>,
-        route:'cars'
+        name:"Deserts",
+        icon:<CakeIcon/>,
+        route:'/deserts'
 
     },
-    {
-        id:1,
-        name:"Bikes",
-        icon:<PedalBikeIcon/>,
-        route:'bikes'
-
-    },
-    {
-        id:2,
-        name:"Motorbikes",
-        icon:<TwoWheelerIcon/>,
-        route:'motorbikes'
-
-    },
+    
     {
         id:3,
-        name:"Boats",
-        icon:<SailingIcon/>,
-        route:'boats'
+        name:"Entry",
+        icon:<DinnerDiningIcon/>,
+        route:'/mainMenu'
 
     },
 ];

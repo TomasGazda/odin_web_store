@@ -4,14 +4,7 @@ import Topbar from './components/Topbar/Topbar';
 import { Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import RightBar from './components/RightBar/RightBar';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { appConst } from './app.consts';
@@ -55,63 +48,43 @@ function App() {
   
 
   return (
-    <Box>   
-    <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <Topbar drawer = {appConst.drawerWidth} openMenu = {()=>{setLeftBarVisible(leftBarVisible =>!leftBarVisible)}} openCart={()=>{setRightBarVisible(rightBarVisible=>!rightBarVisible)}}></Topbar>
-        <Navbar leftBar= {leftBarVisible} setLeftBarVisible={(open) =>{setLeftBarVisible(left =>open)} }></Navbar>
-  
-        <Drawer
-              anchor="right"
-              open={rightBarVisible}
-              onClose={toggleRightDrawer(false)}
-              >
-                <Box
-                  sx={{ width: appConst.drawerWidth }}
-                  role="presentation"
-                  onClick={toggleRightDrawer(false)}
-                  onKeyDown={toggleRightDrawer(false)}
+    <Box sx={{height:'100vh', width:'100vw',display:'flex',flexDirection:'column'}}>   
+      <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <Topbar drawer = {appConst.drawerWidth} openMenu = {()=>{setLeftBarVisible(leftBarVisible =>!leftBarVisible)}} openCart={()=>{setRightBarVisible(rightBarVisible=>!rightBarVisible)}} items={shoppingCart.length}></Topbar>
+          <Navbar leftBar= {leftBarVisible} setLeftBarVisible={(open) =>{setLeftBarVisible(left =>open)} }></Navbar>
+    
+          <Drawer
+                anchor="right"
+                open={rightBarVisible}
+                onClose={toggleRightDrawer(false)}
                 >
-                  <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                      <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                          <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                          </ListItemIcon>
-                          <ListItemText primary={text} />
-                        </ListItemButton>
-                      </ListItem>
-                    ))}
-                  </List>
-                  <Divider />
-                  <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                      <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                          <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                          </ListItemIcon>
-                          <ListItemText primary={text} />
-                        </ListItemButton>
-                      </ListItem>
-                    ))}
-                  </List>
-                </Box>
-        </Drawer>
+                  <Box
+                    sx={{ width: '375px' }}
+                    role="presentation"
+                    onClick={toggleRightDrawer(false)}
+                    onKeyDown={toggleRightDrawer(false)}
+                  >
+                    <RightBar shoppingCart={shoppingCart}/>
+                  </Box>
+          </Drawer>
+          
+          <Box component="main"
+            onClick={toggleLeftDrawer(false)}
+            onKeyDown={toggleLeftDrawer(false)}
+            sx={{
+              display:'flex',
+              flex:1,
+              overflowY:'auto',
+              width: { sm: `calc(100% - ${appConst.drawerWidth}px)` },
+              ml: { sm: `${appConst.drawerWidth}px` },
+              
+            }}>
+            <Outlet/>
+          </Box>
+          
         
-        <Box
-          onClick={toggleLeftDrawer(false)}
-          onKeyDown={toggleLeftDrawer(false)}
-        sx={{
-            width: { sm: `calc(100% - ${appConst.drawerWidth}px)` },
-            ml: { sm: `${appConst.drawerWidth}px` },
-          }}>
-          <Outlet/>
-        </Box>
-        
-      
-    </ThemeProvider>
+      </ThemeProvider>
     </Box>
   );
 }
