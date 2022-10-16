@@ -8,9 +8,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import  StyledBadge from '@mui/material/Badge';
 import { appConst } from '../../app.consts';
+import { Link as RouterLink} from 'react-router-dom';
+
+import { useContext } from 'react';
+import { CartContext } from '../Context/cartContext';
 
 
 const Topbar = (props) => {
+  const [cart] = useContext(CartContext);
   return (
     <div>
       <Box sx={{ flex: 1,}}>
@@ -34,8 +39,8 @@ const Topbar = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ display: { xs: 'block', sm: 'none' },flexGrow: 1}}>
-            {appConst.companyName}
+          <Typography variant="h6" component={RouterLink} to="/" sx={{ display: { xs: 'block', sm: 'none' },flexGrow: 1,color:appConst.secondaryMain,textDecoration:"none"}}> 
+              {appConst.companyName}
           </Typography>
           
             <div>
@@ -48,7 +53,7 @@ const Topbar = (props) => {
                 onClick={props.openCart}
                 color="inherit"
               >
-                <StyledBadge badgeContent={props.items} color="secondary">
+                <StyledBadge badgeContent={cart.length} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
                 

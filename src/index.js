@@ -8,6 +8,8 @@ import Cart from './components/Cart/Cart';
 import Home from './components/Home/Home';
 import Store from './components/Store/Store';
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

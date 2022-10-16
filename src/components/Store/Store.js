@@ -30,8 +30,8 @@ const Store = (props) => {
           if(result.length>=index+1){secondElement = result[index+1];}
           if(firstElement !== undefined){
           setdata(data => [...data,<Grid container key={uuid.v1()}  justifyContent="center"  item xs={12} spacing={2} sx={{height:'100%',m:0}} >
-          <Grid key={uuid.v1()} item xs={6} md={4}> <MyCard key={firstElement.id} name={firstElement.name} logo={firstElement.image} memo={firstElement.description} price={firstElement.price}/> </Grid>
-          {secondElement != null && <Grid item xs={6} md={4}> <MyCard key={secondElement.id} name={secondElement.name} logo={secondElement.image} memo={secondElement.description} price={secondElement.price}/> </Grid>}
+          <Grid key={uuid.v1()} item xs={6} md={4}> <MyCard key={firstElement.id} id={firstElement.id} name={firstElement.name} logo={firstElement.image} memo={firstElement.description} price={firstElement.price}/> </Grid>
+          {secondElement != null && <Grid item xs={6} md={4}> <MyCard key={secondElement.id} id={secondElement.id} name={secondElement.name} logo={secondElement.image} memo={secondElement.description} price={secondElement.price}/> </Grid>}
         </Grid>])
           }
         }

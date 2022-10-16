@@ -4,6 +4,12 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Button  from '@mui/material/Button';
+import { useContext } from 'react';
+import { CartContext } from '../Context/cartContext';
+
+
+
 
 
 const Img = styled('img')({
@@ -15,6 +21,8 @@ const Img = styled('img')({
   
 
 const StackItem = (props) => {
+  const [cart, setCart] = useContext(CartContext);
+
   return (
     <Paper
       sx={{
@@ -42,13 +50,14 @@ const StackItem = (props) => {
             </Grid>
             <Grid item justifyContent="end">
               <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                Remove
+                <Button onClick={()=>setCart(cart => cart.filter(x => {return x.id!==props.id}))}>Remove</Button>
+                
               </Typography>
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="subtitle1" component="div">
-              {props.price}
+            <Typography variant="subtitle1" component="div" sx={{pr:1}}>
+              {props.price} $
             </Typography>
           </Grid>
         </Grid>

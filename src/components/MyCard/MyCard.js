@@ -9,9 +9,14 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import { useContext } from 'react';
+import { CartContext } from '../Context/cartContext';
+
 
 
 const MyCard = (props) => {
+  const [cart, setCart] = useContext(CartContext);
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -33,7 +38,7 @@ const MyCard = (props) => {
       </CardContent>
       <CardActions>
         <Button disabled size="small">Detail</Button>
-        <Button size="small">Add to Cart</Button>
+        <Button size="small" onClick={()=>setCart(cart => [...cart,{"id":props.id,"name":props.name,"price":props.price,"logo":props.logo}])}>Add to Cart</Button>
       </CardActions>
     </Card>
   )

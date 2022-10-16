@@ -79,7 +79,7 @@ const Navbar = (props) => {
                   <Toolbar
                   sx={{ backgroundColor:appConst.primaryMain,color:"white" }}
                   >
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
+                    <Typography variant="h6" component={RouterLink} to="/"  sx={{ flexGrow: 1,color:appConst.secondaryMain,textDecoration:"none"}}>
                         {appConst.companyName}
                     </Typography>
                   </Toolbar>
